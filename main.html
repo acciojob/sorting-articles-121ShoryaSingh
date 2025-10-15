@@ -19,7 +19,7 @@
             margin-bottom: 30px;
         }
         
-        #band {
+        #bands {
             list-style-type: none;
             padding: 0;
             background-color: white;
@@ -28,28 +28,28 @@
             overflow: hidden;
         }
         
-        #band li {
+        #bands li {
             padding: 15px 20px;
             border-bottom: 1px solid #eee;
             transition: background-color 0.3s ease;
         }
         
-        #band li:last-child {
+        #bands li:last-child {
             border-bottom: none;
         }
         
-        #band li:hover {
+        #bands li:hover {
             background-color: #f8f9fa;
         }
         
-        #band li:nth-child(odd) {
+        #bands li:nth-child(odd) {
             background-color: #fafafa;
         }
     </style>
 </head>
 <body>
     <h1>Band Names - Alphabetically Sorted</h1>
-    <ul id="band">
+    <ul id="bands">
         <!-- Articles will be populated here by JavaScript -->
     </ul>
 
@@ -71,7 +71,7 @@
 
         function displayBands() {
             const sortedBands = sortBands([...bands]); // Create a copy to avoid mutating original array
-            const bandList = document.getElementById('band');
+            const bandList = document.getElementById('bands');
             
             // Clear existing content
             bandList.innerHTML = '';
