@@ -1,16 +1,91 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabetical Article Sorter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        #band {
+            list-style-type: none;
+            padding: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        #band li {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+        }
+        
+        #band li:last-child {
+            border-bottom: none;
+        }
+        
+        #band li:hover {
+            background-color: #f8f9fa;
+        }
+        
+        #band li:nth-child(odd) {
+            background-color: #fafafa;
+        }
+    </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+    <h1>Band Names - Alphabetically Sorted</h1>
+    <ul id="band">
+        <!-- Articles will be populated here by JavaScript -->
+    </ul>
 
+    <script>
+        const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+
+        function removeArticles(str) {
+            // Remove 'a', 'an', 'the' from the beginning of the string (case insensitive)
+            return str.replace(/^(a|an|the)\s+/i, '');
+        }
+
+        function sortBands(bandsArray) {
+            return bandsArray.sort((a, b) => {
+                const aWithoutArticles = removeArticles(a);
+                const bWithoutArticles = removeArticles(b);
+                return aWithoutArticles.localeCompare(bWithoutArticles);
+            });
+        }
+
+        function displayBands() {
+            const sortedBands = sortBands([...bands]); // Create a copy to avoid mutating original array
+            const bandList = document.getElementById('band');
+            
+            // Clear existing content
+            bandList.innerHTML = '';
+            
+            // Add each band as a list item
+            sortedBands.forEach(band => {
+                const listItem = document.createElement('li');
+                listItem.textContent = band;
+                bandList.appendChild(listItem);
+            });
+        }
+
+        // Display the sorted bands when the page loads
+        displayBands();
+    </script>
 </body>
-
 </html>
